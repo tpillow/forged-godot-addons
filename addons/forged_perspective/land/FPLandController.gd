@@ -16,7 +16,7 @@ var fpController: FPController setget , _getFpController
 
 func _enter_tree():
 	add_to_group(_groupName)
-	_fpController = get_tree().root.get_node(fpControllerPath)
+	_fpController = get_node(fpControllerPath)
 	if _fpController == null:
 		_fpController = get_tree().root.find_node("FPController", true, false)
 	if _fpController == null:
@@ -33,7 +33,7 @@ func reset():
 			part.queue_free()
 	_landParts.clear()
 
-func fpUpdate():
+func fpUpdate(fpController: FPController):
 	fpLandUpdate()
 
 func fpLandUpdate():

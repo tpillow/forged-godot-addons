@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://addons/forged_perspective/controller/FPController.gd" type="Script" id=1]
 [ext_resource path="res://addons/forged_perspective/land/simple/renderers/FPSimpleLandTopRenderer.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://addons/forged_perspective/land/simple/renderers/FPSimpleLandSideRenderer.gd" type="Script" id=4]
 [ext_resource path="res://scenes/Main.gd" type="Script" id=5]
 [ext_resource path="res://addons/forged_perspective/land/simple/renderers/FPSimpleLandSplashRenderer.gd" type="Script" id=6]
+[ext_resource path="res://scenes/GodotFace.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1 )
@@ -29,6 +30,8 @@ current = true
 
 [node name="FPController" type="Node" parent="."]
 script = ExtResource( 1 )
+_cameraToFollowPath = NodePath("../Camera2D")
+_followCameraRotation = true
 
 [node name="FPLandController" type="Node2D" parent="."]
 script = ExtResource( 3 )
@@ -41,3 +44,6 @@ script = ExtResource( 4 )
 
 [node name="FPSimpleLandTopRenderer" type="Node2D" parent="FPLandController"]
 script = ExtResource( 2 )
+
+[node name="GodotFace" parent="." instance=ExtResource( 7 )]
+position = Vector2( -50, -69 )

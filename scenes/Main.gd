@@ -6,6 +6,7 @@ onready var fpController: FPController = $FPController
 onready var fpLandController: FPLandController = $FPLandController
 
 func _ready():
+	randomize()
 	_tmpGenerateCircles()
 	
 func _tmpGenerateCircles():
@@ -24,4 +25,3 @@ func _process(delta):
 		cam.rotate(camRotateSpeed * delta)
 	elif Input.is_key_pressed(KEY_E):
 		cam.rotate(-camRotateSpeed * delta)
-	fpController.rotation = cam.rotation
