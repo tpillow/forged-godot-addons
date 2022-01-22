@@ -27,11 +27,12 @@ func _process(delta):
 	elif Input.is_key_pressed(KEY_E):
 		cam.rotate(-camRotateSpeed * delta)
 	
-	if Input.is_key_pressed(KEY_A):
-		cam.position.x -= camMoveSpeed * delta
-	elif Input.is_key_pressed(KEY_D):
-		cam.position.x += camMoveSpeed * delta
-	if Input.is_key_pressed(KEY_W):
-		cam.position.y -= camMoveSpeed * delta
-	elif Input.is_key_pressed(KEY_S):
-		cam.position.y += camMoveSpeed * delta
+	# TODO: just debug, doesn't take into account angle or anything; also should use actions
+#	if Input.is_key_pressed(KEY_A):
+#		cam.position.x -= camMoveSpeed * delta
+#	elif Input.is_key_pressed(KEY_D):
+#		cam.position.x += camMoveSpeed * delta
+#	if Input.is_key_pressed(KEY_W):
+#		cam.position.y -= camMoveSpeed * delta
+#	elif Input.is_key_pressed(KEY_S):
+#		cam.position.y += camMoveSpeed * delta

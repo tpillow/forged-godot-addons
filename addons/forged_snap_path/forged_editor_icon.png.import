@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fpicon.png-0f3978b6db7ec3d8b0b927d962a97038.stex"
+path="res://.import/forged_editor_icon.png-35a1cbca7f056647c7561bde32a64161.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/forged_perspective/fpicon.png"
-dest_files=[ "res://.import/fpicon.png-0f3978b6db7ec3d8b0b927d962a97038.stex" ]
+source_file="res://addons/forged_snap_path/forged_editor_icon.png"
+dest_files=[ "res://.import/forged_editor_icon.png-35a1cbca7f056647c7561bde32a64161.stex" ]
 
 [params]
 

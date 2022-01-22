@@ -45,6 +45,16 @@ _global_script_classes=[ {
 "path": "res://addons/forged_perspective/land/simple/renderers/FPSimpleLandTopRenderer.gd"
 }, {
 "base": "Node2D",
+"class": "FSPSnapNode",
+"language": "GDScript",
+"path": "res://addons/forged_snap_path/snap/FSPSnapNode.gd"
+}, {
+"base": "Line2D",
+"class": "FUNodeLine2D",
+"language": "GDScript",
+"path": "res://addons/forged_utils/single_nodes/FUNodeLine2D.gd"
+}, {
+"base": "Node2D",
 "class": "Main",
 "language": "GDScript",
 "path": "res://scenes/Main.gd"
@@ -57,6 +67,8 @@ _global_script_class_icons={
 "FPSimpleLandSideRenderer": "",
 "FPSimpleLandSplashRenderer": "",
 "FPSimpleLandTopRenderer": "",
+"FSPSnapNode": "",
+"FUNodeLine2D": "",
 "Main": ""
 }
 
@@ -68,7 +80,7 @@ run/main_scene="res://scenes/Main.tscn"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/forged_perspective/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/forged_perspective/plugin.cfg", "res://addons/forged_snap_path/plugin.cfg", "res://addons/forged_utils/plugin.cfg" )
 
 [physics]
 

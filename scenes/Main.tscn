@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://addons/forged_perspective/controller/FPController.gd" type="Script" id=1]
 [ext_resource path="res://addons/forged_perspective/land/simple/renderers/FPSimpleLandTopRenderer.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://addons/forged_perspective/land/simple/renderers/FPSimpleLandSplashRenderer.gd" type="Script" id=6]
 [ext_resource path="res://scenes/GodotFace.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/MainControl.gd" type="Script" id=8]
+[ext_resource path="res://scenes/forged_walker/ForgedWalkerTest.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1 )
@@ -66,3 +67,5 @@ align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ForgedWalkerTest" parent="." instance=ExtResource( 9 )]
