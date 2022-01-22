@@ -20,12 +20,13 @@ func _tmpGenerateCircles():
 	fpLandController.freezeUpdates = false
 
 func _process(delta):
-	var camRotateSpeed = deg2rad(25.0)
-	var camMoveSpeed = 80.0
-	if Input.is_key_pressed(KEY_Q):
-		cam.rotate(camRotateSpeed * delta)
-	elif Input.is_key_pressed(KEY_E):
-		cam.rotate(-camRotateSpeed * delta)
+	pass
+#	var camRotateSpeed = deg2rad(25.0)
+#	var camMoveSpeed = 80.0
+#	if Input.is_key_pressed(KEY_Q):
+#		cam.rotate(camRotateSpeed * delta)
+#	elif Input.is_key_pressed(KEY_E):
+#		cam.rotate(-camRotateSpeed * delta)
 	
 	# TODO: just debug, doesn't take into account angle or anything; also should use actions
 #	if Input.is_key_pressed(KEY_A):

@@ -23,10 +23,12 @@ position = Vector2( 32, 0 )
 [node name="FSPSnapNodeLeft" type="Node2D" parent="WalkerContainer"]
 script = ExtResource( 3 )
 homePath = NodePath("../Walker/LeftHome")
+startOffset = Vector2( 0, -9 )
 
 [node name="FSPSnapNodeRight" type="Node2D" parent="WalkerContainer"]
 script = ExtResource( 3 )
 homePath = NodePath("../Walker/RightHome")
+startOffset = Vector2( 0, 9 )
 
 [node name="FUNodeLine2DLeft" type="Line2D" parent="WalkerContainer"]
 width = 6.0

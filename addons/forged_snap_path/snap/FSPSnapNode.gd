@@ -4,6 +4,7 @@ extends Node2D
 export var homePath: NodePath
 export var maxDistanceFromHome: float = 10.0
 export var tweenHomeDuration: float = 0.1
+export var startOffset: Vector2 = Vector2()
 
 var tweenTransType: int = Tween.TRANS_QUINT
 var tweenEaseType: int = Tween.EASE_OUT
@@ -12,6 +13,7 @@ var _tween: Tween = Tween.new()
 
 func _ready():
 	add_child(_tween)
+	global_position = _getHomeNode().global_position + startOffset
 
 func _process(delta):
 	var distFromHome: float = global_position.distance_to(_getHomeNode().global_position)
