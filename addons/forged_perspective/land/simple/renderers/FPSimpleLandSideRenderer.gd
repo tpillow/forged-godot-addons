@@ -1,5 +1,5 @@
 class_name FPSimpleLandSideRenderer
-extends FPSimpleLandBaseRenderer
+extends FPLandBaseRenderer
 
 func _baseDrawPart(part) -> bool:
 	if part is FPSimpleLandCircle:

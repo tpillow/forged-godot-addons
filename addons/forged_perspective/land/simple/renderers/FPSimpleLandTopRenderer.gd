@@ -1,6 +1,5 @@
-# TODO: make a base class for SimpleRenderers, they share a lot of code, really just need _baseDrawPart here
 class_name FPSimpleLandTopRenderer
-extends FPSimpleLandBaseRenderer
+extends FPLandBaseRenderer
 
 func _baseDrawPart(part) -> bool:
 	if part is FPSimpleLandCircle:
