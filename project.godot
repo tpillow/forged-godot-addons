@@ -74,8 +74,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="ForgedPerspective"
-config/description="A Godot addon for creating a pseudo-3d top-down-ish art style with a rotatable camera."
+config/name="ForgedGodotAddons"
+config/description="A collection of 2D addons for Godot, under the nickname \"Forged\"."
 run/main_scene="res://scenes/Main.tscn"
 
 [editor_plugins]
