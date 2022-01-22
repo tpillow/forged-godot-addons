@@ -1,0 +1,75 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node",
+"class": "FPController",
+"language": "GDScript",
+"path": "res://addons/forged_perspective/controller/FPController.gd"
+}, {
+"base": "Node",
+"class": "FPLandController",
+"language": "GDScript",
+"path": "res://addons/forged_perspective/land/FPLandController.gd"
+}, {
+"base": "Node2D",
+"class": "FPSimpleLandBaseRenderer",
+"language": "GDScript",
+"path": "res://addons/forged_perspective/land/simple/renderers/FPSimpleLandBaseRenderer.gd"
+}, {
+"base": "Node",
+"class": "FPSimpleLandCircle",
+"language": "GDScript",
+"path": "res://addons/forged_perspective/land/simple/pieces/FPSimpleLandCircle.gd"
+}, {
+"base": "FPSimpleLandBaseRenderer",
+"class": "FPSimpleLandSideRenderer",
+"language": "GDScript",
+"path": "res://addons/forged_perspective/land/simple/renderers/FPSimpleLandSideRenderer.gd"
+}, {
+"base": "FPSimpleLandBaseRenderer",
+"class": "FPSimpleLandTopRenderer",
+"language": "GDScript",
+"path": "res://addons/forged_perspective/land/simple/renderers/FPSimpleLandTopRenderer.gd"
+}, {
+"base": "Node2D",
+"class": "Main",
+"language": "GDScript",
+"path": "res://scenes/Main.gd"
+} ]
+_global_script_class_icons={
+"FPController": "",
+"FPLandController": "",
+"FPSimpleLandBaseRenderer": "",
+"FPSimpleLandCircle": "",
+"FPSimpleLandSideRenderer": "",
+"FPSimpleLandTopRenderer": "",
+"Main": ""
+}
+
+[application]
+
+config/name="Franken Isle"
+run/main_scene="res://scenes/Main.tscn"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/forged_perspective/plugin.cfg" )
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+vram_compression/import_etc=true
+vram_compression/import_etc2=false
+environment/default_environment="res://default_env.tres"
