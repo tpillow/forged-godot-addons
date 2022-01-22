@@ -26,3 +26,6 @@ func _baseDrawPart(part) -> bool:
 
 func fpLandUpdate():
 	update()
+	
+func getFpController() -> FPController:
+	return _fpLandController.fpController

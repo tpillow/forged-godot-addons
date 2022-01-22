@@ -3,16 +3,26 @@ extends Node
 var __is_FPLandController: bool = true
 
 export var _groupName: String = FPController.DEFAULT_FORGED_PERSPECTIVE_GROUP
+export(NodePath) var fpControllerPath: NodePath
 export var queueFreeLandPartsOnRemoval: bool = true
 
 var _landParts: Array = []
 var _freezeUpdates: bool = false
+var _fpController: FPController = null
 
 var freezeUpdates: bool setget _setFreezeUpdates, _getFreezeUpdates
 var landParts: Array setget , _getLandParts
+var fpController: FPController setget , _getFpController
 
 func _enter_tree():
 	add_to_group(_groupName)
+	_fpController = get_tree().root.get_node(fpControllerPath)
+	if _fpController == null:
+		_fpController = get_tree().root.find_node("FPController", true, false)
+	if _fpController == null:
+		assert(false, "FPLandController: could not get referenced (or find) FPController node that is required")
+	if not (_fpController is FPController):
+		assert(false, "FPLandController: the FPController node must be of type FPController")
 	reset()
 	
 func reset():
@@ -40,6 +50,9 @@ func update():
 func addLandPart(part):
 	_landParts.append(part)
 	update()
+
+func _getFpController() -> FPController:
+	return _fpController
 
 func _getLandParts() -> Array:
 	return _landParts

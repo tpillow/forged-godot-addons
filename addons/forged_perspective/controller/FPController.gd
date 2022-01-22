@@ -18,7 +18,7 @@ func _enter_tree():
 	update()
 
 func update():
-	if enabled:
+	if _enabled:
 		var nodes: Array = get_tree().get_nodes_in_group(_groupName)
 		for node in nodes:
 			assert(node.has_method("fpUpdate"),
