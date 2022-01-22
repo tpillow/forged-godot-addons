@@ -4,7 +4,7 @@ extends EditorPlugin
 func _enter_tree():
 	add_custom_type("FPController", "Node",
 		preload("controller/FPController.gd"), preload("fpicon.png"))
-	add_custom_type("FPLandController", "Node",
+	add_custom_type("FPLandController", "Node2D",
 		preload("land/FPLandController.gd"), preload("fpicon.png"))
 	
 	add_custom_type("FPSimpleLandTopRenderer", "Node2D",

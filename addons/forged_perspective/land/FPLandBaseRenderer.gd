@@ -1,5 +1,6 @@
 class_name FPLandBaseRenderer
 extends Node2D
+var __is_FPLandBaseRenderer: bool = true
 
 var _fpLandController = null # Can't type this due to stupid dependency cycle that should have been fixed long long ago but for some reason isn't fixed in Godot which is really annoying and is probably the absolute worst part about this engine especially when people want to make decent plugins that will have autocompletion and such.
 

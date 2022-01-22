@@ -19,7 +19,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/forged_perspective/land/FPLandBaseRenderer.gd"
 }, {
-"base": "Node",
+"base": "Node2D",
 "class": "FPLandController",
 "language": "GDScript",
 "path": "res://addons/forged_perspective/land/FPLandController.gd"
@@ -62,7 +62,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Franken Isle"
+config/name="ForgedPerspective"
+config/description="A Godot addon for creating a pseudo-3d top-down-ish art style with a rotatable camera."
 run/main_scene="res://scenes/Main.tscn"
 
 [editor_plugins]

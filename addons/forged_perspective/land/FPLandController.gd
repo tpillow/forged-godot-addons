@@ -1,5 +1,5 @@
 class_name FPLandController
-extends Node
+extends Node2D
 var __is_FPLandController: bool = true
 
 export var _groupName: String = FPController.DEFAULT_FORGED_PERSPECTIVE_GROUP
@@ -34,22 +34,21 @@ func reset():
 	_landParts.clear()
 
 func fpUpdate():
-	update()
+	fpLandUpdate()
 
-func update():
+func fpLandUpdate():
 	if _freezeUpdates:
 		return
 	for child in get_children():
-		# TODO: maybe have the renderers have a priority, instead of depending on tree order
-		assert(child.has_method("fpLandUpdate"),
-			"FPLandController: in all children of an FPLand node must have a 'fpLandUpdate()' method")
+		assert(child.get("__is_FPLandBaseRenderer"),
+			"FPLandController: all children of an FPLand node must be a 'FPLandBaseRenderer' subclass")
 		child.fpLandUpdate()
 
 # NOTE: changing properties of a part after adding it will NOT trigger automatic updates
 # instead if properties change, a manual update must be triggered
 func addLandPart(part):
 	_landParts.append(part)
-	update()
+	fpLandUpdate()
 
 func _getFpController() -> FPController:
 	return _fpController
@@ -60,7 +59,7 @@ func _getLandParts() -> Array:
 func _setFreezeUpdates(freeze: bool):
 	_freezeUpdates = freeze
 	if _freezeUpdates:
-		update()
+		fpLandUpdate()
 		
 func _getFreezeUpdates() -> bool:
 	return _freezeUpdates
