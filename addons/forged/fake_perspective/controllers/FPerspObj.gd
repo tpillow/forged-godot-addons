@@ -35,6 +35,7 @@ func _getFPerspObjRelativeToNode() -> Node2D:
 		var node = get_node(relativeToNodePath)
 		assert(node and node is Node2D,
 			"FPerspObj: node pointed to by 'relativeToNodePath' must be a Node2D")
+		return node
 	else:
 		assert(false, "FPerspObj: node must point to parent or have a valid 'relativeToNodePath' set")
 	return null

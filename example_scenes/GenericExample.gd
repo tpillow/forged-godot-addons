@@ -31,7 +31,7 @@ func _generateExampleLand():
 	fLandController.reset()
 	for child in fPerspYSort.get_children():
 		child.queue_free()
-	#fPerspYSort.add_child(PL_PLAYER.instance())
+	fPerspYSort.add_child(PL_PLAYER.instance())
 
 	for i in range(numIslandsToGenerate):
 		# Create the land part
