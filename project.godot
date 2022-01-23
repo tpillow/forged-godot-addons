@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/forged/fake_perspective/controllers/FPerspController.gd"
 }, {
+"base": "Node2D",
+"class": "FPerspYSort",
+"language": "GDScript",
+"path": "res://addons/forged/fake_perspective/util/FPerspYSort.gd"
+}, {
 "base": "Node",
 "class": "FSimpleLandCircle",
 "language": "GDScript",
@@ -64,6 +69,7 @@ _global_script_class_icons={
 "FLandController": "",
 "FNodeLine2D": "",
 "FPerspController": "",
+"FPerspYSort": "",
 "FSimpleLandCircle": "",
 "FSimpleLandSideRenderer": "",
 "FSimpleLandSplashRenderer": "",

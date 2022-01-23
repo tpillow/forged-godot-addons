@@ -28,6 +28,9 @@ func _initFakePerspective():
 	_addCustomType("FLandController", "Node2D",
 		preload("fake_perspective/land/FLandController.gd"))
 		
+	_addCustomType("FPerspYSort", "Node2D",
+		preload("fake_perspective/util/FPerspYSort.gd"))
+		
 	_addCustomType("FSimpleLandTopRenderer", "Node2D",
 		preload("fake_perspective/land/simple/renderers/FSimpleLandTopRenderer.gd"))
 	_addCustomType("FSimpleLandSideRenderer", "Node2D",

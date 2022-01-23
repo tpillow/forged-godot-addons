@@ -7,10 +7,11 @@ export var islandRadiusRange := Vector2(50, 150)
 export var islandXRange := Vector2(-300, 300)
 export var islandYRange := Vector2(-150, 150)
 export var camRotationSpeedDegs: float = 30.0
+export var numTreesToGenerate: int = 100
 
 onready var fLandController: FLandController = $FLandController
 onready var cam: Camera2D = $Cam
-onready var objects: Node2D = $Objects
+onready var fPerspYSort: FPerspYSort = $FPerspYSort
 
 func _ready():
 	_generateExampleLand()
@@ -27,7 +28,7 @@ func _process(delta):
 func _generateExampleLand():
 	fLandController.freezeUpdates = true # Just prevents unnecessary updates while building
 	fLandController.reset()
-	for child in objects.get_children():
+	for child in fPerspYSort.get_children():
 		child.queue_free()
 
 	for i in range(numIslandsToGenerate):
@@ -38,9 +39,28 @@ func _generateExampleLand():
 			FUtils.randfFromVec2(islandRadiusRange))
 		fLandController.addLandPart(landPart)
 		
-		# Slap a simple tree in the center of each
-		var simpleTree := PL_SIMPLE_TREE.instance()
-		simpleTree.position = landPos
-		objects.add_child(simpleTree)
+	_generateTrees()
 
 	fLandController.freezeUpdates = false
+
+func _generateTrees():
+	var simpleTree := PL_SIMPLE_TREE.instance()
+	simpleTree.position = Vector2(0, -10)
+	fPerspYSort.add_child(simpleTree)
+
+	simpleTree = PL_SIMPLE_TREE.instance()
+	simpleTree.position = Vector2(-10, 0)
+	fPerspYSort.add_child(simpleTree)
+
+	simpleTree = PL_SIMPLE_TREE.instance()
+	simpleTree.position = Vector2(10, 10)
+	fPerspYSort.add_child(simpleTree)
+
+#	for i in range(numTreesToGenerate):
+#		var treePos := FUtils.randVec2(islandXRange, islandYRange)
+#		while not fLandController.isPointOnLand(treePos):
+#			treePos = FUtils.randVec2(islandXRange, islandYRange)
+#			# TODO: should probably have a safety to prevent infinite loop
+#		var simpleTree := PL_SIMPLE_TREE.instance()
+#		simpleTree.position = treePos
+#		fPerspYSort.add_child(simpleTree)

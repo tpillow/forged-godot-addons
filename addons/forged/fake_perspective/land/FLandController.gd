@@ -18,6 +18,7 @@ func _enter_tree():
 	add_to_group(_groupName)
 	fPerspController = get_node(fPerspControllerPath)
 	if _fPerspController == null:
+		# TODO: don't do this, errors if it can't find automatically, shouldn't do every frame either
 		_fPerspController = get_tree().root.find_node("FPerspController", true, false)
 	if _fPerspController == null:
 		assert(false, "FLandController: could not get referenced (or find) FPerspController node that is required")

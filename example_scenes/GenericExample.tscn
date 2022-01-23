@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://example_scenes/GenericExample.gd" type="Script" id=1]
 [ext_resource path="res://addons/forged/fake_perspective/land/simple/renderers/FSimpleLandSideRenderer.gd" type="Script" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://addons/forged/fake_perspective/land/simple/renderers/FSimpleLandTopRenderer.gd" type="Script" id=4]
 [ext_resource path="res://addons/forged/fake_perspective/land/simple/renderers/FSimpleLandSplashRenderer.gd" type="Script" id=5]
 [ext_resource path="res://addons/forged/fake_perspective/controllers/FPerspController.gd" type="Script" id=6]
+[ext_resource path="res://addons/forged/fake_perspective/util/FPerspYSort.gd" type="Script" id=7]
+[ext_resource path="res://example_scenes/MainControl.gd" type="Script" id=8]
 
 [node name="GenericExample" type="Node2D"]
 script = ExtResource( 1 )
@@ -31,7 +33,8 @@ script = ExtResource( 2 )
 [node name="FSimpleLandTopRenderer" type="Node2D" parent="FLandController"]
 script = ExtResource( 4 )
 
-[node name="Objects" type="Node2D" parent="."]
+[node name="FPerspYSort" type="Node2D" parent="."]
+script = ExtResource( 7 )
 
 [node name="ControlLayer" type="CanvasLayer" parent="."]
 
@@ -39,6 +42,17 @@ script = ExtResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FPSLabel" type="Label" parent="ControlLayer/MainControl"]
+anchor_right = 1.0
+margin_top = 10.0
+margin_right = -10.0
+text = "FPS: ??"
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
