@@ -27,6 +27,3 @@ func _baseDrawPart(part) -> bool:
 
 func fpLandUpdate():
 	update()
-	
-func getFPerspController() -> FPerspController:
-	return _fLandController.fPerspController

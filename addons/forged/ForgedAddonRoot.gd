@@ -25,6 +25,8 @@ func _initSnapPath():
 func _initFakePerspective():
 	_addCustomType("FPerspController", "Node",
 		preload("fake_perspective/controllers/FPerspController.gd"))
+	_addCustomType("FPerspObj", "Node2D",
+		preload("fake_perspective/controllers/FPerspObj.gd"))
 	_addCustomType("FLandController", "Node2D",
 		preload("fake_perspective/land/FLandController.gd"))
 		

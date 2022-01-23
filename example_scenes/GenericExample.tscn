@@ -62,7 +62,8 @@ __meta__ = {
 margin_left = 10.0
 margin_top = 10.0
 text = "[1]: Re-generate Islands
-[Q|E]: Rotate Left | Right"
+[Q|E]: Rotate Left | Right
+[LMB]: Move"
 __meta__ = {
 "_edit_use_anchors_": false
 }

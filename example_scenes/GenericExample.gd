@@ -1,6 +1,7 @@
 extends Node2D
 
 const PL_SIMPLE_TREE := preload("res://example_scenes/simple_tree/SimpleTree.tscn")
+const PL_PLAYER := preload("res://example_scenes/player/Player.tscn")
 
 export var numIslandsToGenerate: int = 10
 export var islandRadiusRange := Vector2(50, 150)
@@ -30,13 +31,14 @@ func _generateExampleLand():
 	fLandController.reset()
 	for child in fPerspYSort.get_children():
 		child.queue_free()
+	#fPerspYSort.add_child(PL_PLAYER.instance())
 
 	for i in range(numIslandsToGenerate):
 		# Create the land part
 		var landPart := FSimpleLandCircle.new()
-		var landPos := FUtils.randVec2(islandXRange, islandYRange)
+		var landPos := FUtil.randVec2(islandXRange, islandYRange)
 		landPart.setup(landPos,
-			FUtils.randfFromVec2(islandRadiusRange))
+			FUtil.randfFromVec2(islandRadiusRange))
 		fLandController.addLandPart(landPart)
 		
 	_generateTrees()
@@ -45,9 +47,9 @@ func _generateExampleLand():
 
 func _generateTrees():
 	for i in range(numTreesToGenerate):
-		var treePos := FUtils.randVec2(islandXRange, islandYRange)
+		var treePos := FUtil.randVec2(islandXRange, islandYRange)
 		while not fLandController.isPointOnLand(treePos):
-			treePos = FUtils.randVec2(islandXRange, islandYRange)
+			treePos = FUtil.randVec2(islandXRange, islandYRange)
 			# TODO: should probably have a safety to prevent infinite loop
 		var simpleTree := PL_SIMPLE_TREE.instance()
 		simpleTree.position = treePos

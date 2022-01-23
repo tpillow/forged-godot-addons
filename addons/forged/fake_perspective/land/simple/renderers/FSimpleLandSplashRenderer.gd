@@ -34,7 +34,7 @@ func _process(delta):
 func _baseDrawPart(part) -> bool:
 	if part is FSimpleLandCircle:
 		draw_circle(part.position +
-			part.sideOffset.rotated(getFPerspController().rotation),
+			part.sideOffset.rotated(FUtil.fPerspController.rotation),
 			part.radius + _radiusOffset, splashColor)
 		return true
 	return false

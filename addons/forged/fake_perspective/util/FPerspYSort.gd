@@ -7,14 +7,11 @@ export var _fPerspControllerPath: NodePath
 export var _enabled: bool = true
 
 var enabled: bool setget _setEnabled, _getEnabled
-var _fPerspController: FPerspController = null
 
 func _enter_tree():
-	_fPerspController = _getFPerspController()
 	resort()
 
 func _process(delta):
-	_fPerspController = _getFPerspController()
 	resort() # TODO: is there a way to not do this every frame?
 
 func resort():
@@ -26,24 +23,21 @@ func resort():
 		move_child(children[i], i)
 
 func _perspSorter(a, b) -> bool:
-	if not _isSortableType(a) or not _isSortableType(b):
-		return false
-	var rot: float = -_fPerspController.rotation
-	return a.position.rotated(rot).y < b.position.rotated(rot).y
+	var aSortable := _getSortable(a)
+	var bSortable := _getSortable(b)
+	return (aSortable.fPerspPosition.rotated(-aSortable.rotation).y <
+		bSortable.fPerspPosition.rotated(-bSortable.rotation).y)
 
-func _getFPerspController() -> FPerspController:
-	var fPerspController = get_node(_fPerspControllerPath)
-	if fPerspController == null:
-		# TODO: don't do this, errors if it can't find automatically, shouldn't do every frame either
-		fPerspController = get_tree().root.find_node("FPerspController", true, false)
-	if fPerspController == null:
-		assert(false, "FPerspYSort: could not get referenced (or find) FPerspController node that is required")
-	if not (fPerspController is FPerspController):
-		assert(false, "FPerspYSort: the FPerspController node must be of type FPerspController")
-	return fPerspController
-
-func _isSortableType(obj):
-	return obj is CanvasItem # TODO: should we check if in perspective group?
+func _getSortable(obj: Node) -> FPerspObj:
+	if obj is FPerspObj:
+		return obj as FPerspObj
+	var objChildren: Array = obj.get_children()
+	for child in objChildren:
+		if child is FPerspObj:
+			return child
+	assert(false,
+		"FPerspYSort: in '_getSortable', could not find FPerspObj as child of node '" + str(obj) + "'")
+	return null
 
 func _setEnabled(enabled: bool):
 	if _enabled == enabled:
