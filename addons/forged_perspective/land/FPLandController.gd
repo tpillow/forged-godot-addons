@@ -44,6 +44,14 @@ func fpLandUpdate():
 			"FPLandController: all children of an FPLand node must be a 'FPLandBaseRenderer' subclass")
 		child.fpLandUpdate()
 
+func isPointOnLand(point: Vector2) -> bool:
+	for part in _landParts:
+		assert(part.has_method("containsPoint"),
+			"FPLandController: to use 'isPointOnLand()', all land parts must contain a 'containsPoint(Vector2)' method")
+		if part.containsPoint(point):
+			return true
+	return false
+
 # NOTE: changing properties of a part after adding it will NOT trigger automatic updates
 # instead if properties change, a manual update must be triggered
 func addLandPart(part):

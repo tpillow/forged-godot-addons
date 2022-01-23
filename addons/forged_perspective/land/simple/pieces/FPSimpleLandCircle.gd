@@ -14,3 +14,6 @@ func setup(position: Vector2, radius: float, sideOffset: Vector2 = Vector2(0, 15
 	self.sideOffset = sideOffset
 	self.topColor = topColor
 	self.sideColor = sideColor
+
+func containsPoint(point: Vector2) -> bool:
+	return position.distance_to(point) <= radius

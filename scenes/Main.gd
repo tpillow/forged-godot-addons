@@ -18,6 +18,7 @@ func _tmpGenerateCircles():
 		part.setup(pos, rand_range(30.0, 90.0))
 		fpLandController.addLandPart(part)
 	fpLandController.freezeUpdates = false
+	fpLandController.isPointOnLand(Vector2()) # Just a quick test, doesn't do anything
 
 func _process(delta):
 	pass
