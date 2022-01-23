@@ -5,6 +5,7 @@ const __is_FSnapNode: bool = true
 export var homePath: NodePath
 export var maxDistanceFromHome: float = 10.0
 export var tweenHomeDuration: float = 0.1
+export var tweenHomeOvershoot: float = 0.0
 export var startOffset: Vector2 = Vector2()
 
 var tweenTransType: int = Tween.TRANS_QUINT
@@ -22,9 +23,13 @@ func _process(delta):
 		_tweenToHome()
 
 func _tweenToHome():
+	var homePos: Vector2 = _getHomeNode().global_position
+	var dirToHomePos: Vector2 = (homePos - global_position).normalized()
+	var overshoot := dirToHomePos * tweenHomeOvershoot
+	
 	_tween.stop_all()
 	_tween.interpolate_property(self, "global_position",
-		global_position, _getHomeNode().global_position,
+		global_position, homePos + overshoot,
 		tweenHomeDuration, tweenTransType, tweenEaseType)
 	_tween.start()
 

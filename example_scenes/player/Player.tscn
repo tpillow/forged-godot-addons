@@ -49,10 +49,13 @@ position = Vector2( 3, 13 )
 [node name="Left" type="Node2D" parent="LegSnaps"]
 script = ExtResource( 2 )
 homePath = NodePath("../../Body/LegHomeMarkers/Left")
+tweenHomeOvershoot = 10.0
 
 [node name="Right" type="Node2D" parent="LegSnaps"]
 script = ExtResource( 2 )
 homePath = NodePath("../../Body/LegHomeMarkers/Right")
+tweenHomeOvershoot = 10.0
+startOffset = Vector2( 0, 7 )
 
 [node name="LegLines" type="Node2D" parent="."]
 
