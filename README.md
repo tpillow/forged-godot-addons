@@ -1,12 +1,12 @@
 # Forged Godot Addons
 
-A collection of 2D addons for Godot.
+A collection of useful pre-made 2D addons for Godot.
 
 ## Forged Addons
 
-- *ForgedPerspective*: a pseudo-3d top-down-ish addon, with rotatable lands and entities.
-- *ForgedSnapPath*: a helper to snap nodes to each other after a certain distance, primarily to create artsy walking animations.
-- *ForgedUtils*: a collection of generic useful nodes.
+- *Fake Perspective*: a pseudo-3d top-down-ish addon, with rotatable lands and entities.
+- *Snap Path*: a helper to snap nodes to each other after a certain distance, primarily to create artsy walking animations.
+- *Utils*: a collection of generic useful nodes, including NodeLine2D, random utils, etc.
 
 ## Project Status
 
