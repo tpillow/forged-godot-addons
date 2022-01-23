@@ -1,6 +1,7 @@
 class_name FPerspYSort
 extends Node2D
 const __is_FPerspYSort: bool = true
+# TODO: allow children y-sorts to have sort logic controlled by parent y-sort (like real YSort node)
 
 export var _fPerspControllerPath: NodePath
 export var _enabled: bool = true
@@ -23,12 +24,12 @@ func resort():
 	children.sort_custom(self, "_perspSorter")
 	for i in range(children.size()):
 		move_child(children[i], i)
-	
+
 func _perspSorter(a, b) -> bool:
 	if not _isSortableType(a) or not _isSortableType(b):
 		return false
-	var rotation: float = _fPerspController.rotation
-	return a.position.rotated(rotation).y < b.position.rotated(rotation).y
+	var rot: float = -_fPerspController.rotation
+	return a.position.rotated(rot).y < b.position.rotated(rot).y
 
 func _getFPerspController() -> FPerspController:
 	var fPerspController = get_node(_fPerspControllerPath)

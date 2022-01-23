@@ -35,6 +35,7 @@ script = ExtResource( 4 )
 
 [node name="FPerspYSort" type="Node2D" parent="."]
 script = ExtResource( 7 )
+_fPerspControllerPath = NodePath("../FPerspController")
 
 [node name="ControlLayer" type="CanvasLayer" parent="."]
 

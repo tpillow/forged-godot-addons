@@ -44,23 +44,11 @@ func _generateExampleLand():
 	fLandController.freezeUpdates = false
 
 func _generateTrees():
-	var simpleTree := PL_SIMPLE_TREE.instance()
-	simpleTree.position = Vector2(0, -10)
-	fPerspYSort.add_child(simpleTree)
-
-	simpleTree = PL_SIMPLE_TREE.instance()
-	simpleTree.position = Vector2(-10, 0)
-	fPerspYSort.add_child(simpleTree)
-
-	simpleTree = PL_SIMPLE_TREE.instance()
-	simpleTree.position = Vector2(10, 10)
-	fPerspYSort.add_child(simpleTree)
-
-#	for i in range(numTreesToGenerate):
-#		var treePos := FUtils.randVec2(islandXRange, islandYRange)
-#		while not fLandController.isPointOnLand(treePos):
-#			treePos = FUtils.randVec2(islandXRange, islandYRange)
-#			# TODO: should probably have a safety to prevent infinite loop
-#		var simpleTree := PL_SIMPLE_TREE.instance()
-#		simpleTree.position = treePos
-#		fPerspYSort.add_child(simpleTree)
+	for i in range(numTreesToGenerate):
+		var treePos := FUtils.randVec2(islandXRange, islandYRange)
+		while not fLandController.isPointOnLand(treePos):
+			treePos = FUtils.randVec2(islandXRange, islandYRange)
+			# TODO: should probably have a safety to prevent infinite loop
+		var simpleTree := PL_SIMPLE_TREE.instance()
+		simpleTree.position = treePos
+		fPerspYSort.add_child(simpleTree)
