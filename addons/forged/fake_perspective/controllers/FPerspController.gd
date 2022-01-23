@@ -13,6 +13,7 @@ export var _followCameraRotation: bool = false
 
 var enabled: bool setget _setEnabled, _getEnabled
 var rotation: float setget _setRotation, _getRotation
+var rotationDegrees: float setget _setRotationDegrees, _getRotationDegrees
 
 func _ready():
 	add_to_group(FORGED_CONTROLLERS_GROUP)
@@ -28,6 +29,7 @@ func _process(delta):
 		self.rotation = cam.rotation
 
 func update():
+	# TODO: need to somehow call this when an object is added to the group
 	if _enabled:
 		var nodes: Array = get_tree().get_nodes_in_group(_groupName)
 		for node in nodes:
@@ -52,3 +54,9 @@ func _setRotation(rotation: float):
 	
 func _getRotation() -> float:
 	return _rotation
+	
+func _setRotationDegrees(rotation: float):
+	self.rotation = deg2rad(rotation)
+	
+func _getRotationDegrees() -> float:
+	return rad2deg(self.rotation)
