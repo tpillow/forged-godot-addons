@@ -1,5 +1,6 @@
 shader_type canvas_item;
 
+uniform bool enableOutline = true;
 uniform int pixelSteps = 1;
 uniform float alphaThresh = 0.5;
 uniform vec4 outlineColor : hint_color = vec4(1.0, 1.0, 1.0, 1.0);
@@ -24,7 +25,9 @@ bool pixelInOutline(vec2 uv, vec2 texturePixelSize, sampler2D tex) {
 
 void fragment() {
 	COLOR = texture(TEXTURE, UV);
-	if(COLOR.a > alphaThresh && pixelInOutline(UV, TEXTURE_PIXEL_SIZE, TEXTURE)){
-		COLOR = outlineColor;
+	if(enableOutline && pixelSteps > 0 && COLOR.a > alphaThresh){
+		if(pixelInOutline(UV, TEXTURE_PIXEL_SIZE, TEXTURE)){
+			COLOR = outlineColor;
+		}
 	}
 }
