@@ -11,6 +11,7 @@
 
 [node name="GenericExample" type="Node2D"]
 script = ExtResource( 1 )
+autoRotateSpeedDegs = 0.0
 
 [node name="FPerspController" type="Node" parent="."]
 script = ExtResource( 6 )

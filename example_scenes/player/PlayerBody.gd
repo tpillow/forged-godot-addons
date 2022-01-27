@@ -21,19 +21,20 @@ func _physics_process(delta):
 	move_and_collide(vel)
 
 func _updateLegs():
-	# TODO: snaps wrong with rotating world
+	# TODO: snaps wrong with rotating world?
 	var dirVec := _calcMoveDirVec()
 	var angle := dirVec.angle() - deg2rad(90)
-	legSnapMarkers.rotation = angle if vel != Vector2.ZERO else 0
-	legSnapMarkers.scale.x = -1 if dirVec.y < 0 else 1
+	if vel != Vector2.ZERO:
+		legSnapMarkers.rotation = angle
+		legSnapMarkers.scale.x = -1 if dirVec.y < 0 else 1
 
 func _animateEyes():
-	if vel.y < 0:
+	var dirVec := _calcMoveDirVec()
+	if dirVec.y < 0:
 		eyeSprite.visible = false
 	else:
 		eyeSprite.visible = true
-		var dirVec := _calcMoveDirVec() # map [-1, 1] to eyeXRange values
-		var dirX := dirVec.x + 1.0 # [0, 2]
+		var dirX := dirVec.x + 1.0 # map [-1, 1] to eyeXRange values -> [0, 2]
 		var eyeX := eyeXRange.x + (dirX / 2.0) * (eyeXRange.y - eyeXRange.x)
 		var dirY := dirVec.y + 1.0
 		var eyeY := eyeYRange.x + (dirY / 2.0) * (eyeYRange.y - eyeYRange.x)
