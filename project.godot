@@ -63,6 +63,21 @@ _global_script_classes=[ {
 "class": "FSnapNode",
 "language": "GDScript",
 "path": "res://addons/forged/snap_path/FSnapNode.gd"
+}, {
+"base": "Object",
+"class": "ForgedGroupUtil",
+"language": "GDScript",
+"path": "res://addons/forged/autoload/ForgedGroupUtil.gd"
+}, {
+"base": "Object",
+"class": "ForgedLogger",
+"language": "GDScript",
+"path": "res://addons/forged/autoload/ForgedLogger.gd"
+}, {
+"base": "Object",
+"class": "ForgedUtil",
+"language": "GDScript",
+"path": "res://addons/forged/autoload/ForgedUtil.gd"
 } ]
 _global_script_class_icons={
 "FLandBaseRenderer": "",
@@ -75,7 +90,10 @@ _global_script_class_icons={
 "FSimpleLandSideRenderer": "",
 "FSimpleLandSplashRenderer": "",
 "FSimpleLandTopRenderer": "",
-"FSnapNode": ""
+"FSnapNode": "",
+"ForgedGroupUtil": "",
+"ForgedLogger": "",
+"ForgedUtil": ""
 }
 
 [application]
@@ -86,8 +104,7 @@ run/main_scene="res://example_scenes/GenericExample.tscn"
 
 [autoload]
 
-FLog="*res://addons/forged/autoload/FLog.gd"
-FUtil="*res://addons/forged/autoload/FUtil.gd"
+Forged="*res://addons/forged/autoload/Forged.gd"
 
 [editor_plugins]
 

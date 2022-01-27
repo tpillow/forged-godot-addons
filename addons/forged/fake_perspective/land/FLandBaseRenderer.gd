@@ -2,7 +2,7 @@ class_name FLandBaseRenderer
 extends Node2D
 const __is_FLandBaseRenderer: bool = true
 
-var _fLandController = null # Can't type this due to stupid dependency cycle that should have been fixed long long ago but for some reason isn't fixed in Godot which is really annoying and is probably the absolute worst part about this engine especially when people want to make decent plugins that will have autocompletion and such.
+var _fLandController = null # Can't type this, due to gdscript :(
 
 func _enter_tree():
 	_fLandController = get_parent()
@@ -13,8 +13,6 @@ func _exit_tree():
 	_fLandController = null
 
 func _draw():
-	assert(_fLandController,
-		"FLandBaseRenderer: in '_draw()', '_fLandController' was null! This shouldn't happen!")
 	for part in _fLandController.landParts:
 		var baseSuccess := _baseDrawPart(part)
 		if not baseSuccess:

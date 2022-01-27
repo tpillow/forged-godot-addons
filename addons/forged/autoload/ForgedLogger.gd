@@ -1,4 +1,5 @@
-extends Node
+class_name ForgedLogger
+extends Object
 
 enum FLogLevel {
 	NONE,

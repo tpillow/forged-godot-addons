@@ -2,21 +2,19 @@ class_name FPerspObj
 extends Node2D
 const __is_FPerspObj: bool = true
 
+export var fPerspControllerGroup: String = FPerspController.DEFAULT_PERSP_CONTROLLER_GROUP_NAME
 export var relativeToParent: bool = true
 export var relativeToNodePath: NodePath
 export var setRelativeRotation: bool = false
 
 var fPerspPosition: Vector2 setget , _getFPerspPosition
 
-func _enter_tree():
-	_updateFPerspObj()
+func _ready():
+	Forged.GroupUtil.addNodeToGroup(self, fPerspControllerGroup)
 	
-func _process(delta):
-	_updateFPerspObj()
-	
-func _updateFPerspObj():
+func onFPerspControllerUpdated(fPerspController: FPerspController):
 	var node: Node2D = _getFPerspObjRelativeToNode()
-	rotation = FUtil.fPerspController.rotation
+	rotation = fPerspController.rotation
 	if setRelativeRotation:
 		node.rotation = rotation
 

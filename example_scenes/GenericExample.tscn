@@ -13,18 +13,17 @@
 script = ExtResource( 1 )
 autoRotateSpeedDegs = 0.0
 
+[node name="Cam" type="Camera2D" parent="."]
+rotating = true
+current = true
+
 [node name="FPerspController" type="Node" parent="."]
 script = ExtResource( 6 )
 _cameraToFollowPath = NodePath("../Cam")
 _followCameraRotation = true
 
-[node name="Cam" type="Camera2D" parent="."]
-rotating = true
-current = true
-
 [node name="FLandController" type="Node2D" parent="."]
 script = ExtResource( 3 )
-fPerspControllerPath = NodePath("../FPerspController")
 
 [node name="FSimpleLandSplashRenderer" type="Node2D" parent="FLandController"]
 script = ExtResource( 5 )
@@ -35,9 +34,9 @@ script = ExtResource( 2 )
 [node name="FSimpleLandTopRenderer" type="Node2D" parent="FLandController"]
 script = ExtResource( 4 )
 
-[node name="FPerspYSort" type="Node2D" parent="."]
+[node name="FPerspYSort" type="Node2D" parent="FLandController"]
 script = ExtResource( 7 )
-_fPerspControllerPath = NodePath("../FPerspController")
+_fPerspControllerPath = NodePath("../../FPerspController")
 
 [node name="ControlLayer" type="CanvasLayer" parent="."]
 

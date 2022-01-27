@@ -2,26 +2,23 @@ class_name FLandController
 extends Node2D
 const __is_FLandController: bool = true
 
-export(NodePath) var fPerspControllerPath: NodePath
+export var _controllerGroupName: String = FPerspController.DEFAULT_PERSP_CONTROLLER_GROUP_NAME
 export var queueFreeLandPartsOnRemoval: bool = true
 
 var _landParts: Array = []
 var _freezeUpdates: bool = false
+var _lastFPerspController: FPerspController = null
 
 var freezeUpdates: bool setget _setFreezeUpdates, _getFreezeUpdates
 var landParts: Array setget , _getLandParts
 var fPerspController: FPerspController setget , _getFPerspController
 
 func _ready():
+	Forged.GroupUtil.addNodeToGroup(self, _controllerGroupName)
 	reset()
 
-func _enter_tree():
-	self.fPerspController.connect("rotationChanged", self, "_onFPerspControllerRotationChanged")
-	
-func _exit_tree():
-	self.fPerspController.disconnect("rotationChanged", self, "_onFPerspControllerRotationChanged")
-	
-func _onFPerspControllerRotationChanged(rotation):
+func onFPerspControllerUpdated(fPerspController: FPerspController):
+	_lastFPerspController = fPerspController
 	fpLandUpdate()
 	
 func reset():
@@ -37,9 +34,8 @@ func fpLandUpdate():
 	if _freezeUpdates:
 		return
 	for child in get_children():
-		assert(child.get("__is_FLandBaseRenderer"),
-			"FLandController: all children of an FPLand node must be a 'FLandBaseRenderer' subclass")
-		child.fpLandUpdate()
+		if child.has_method("fpLandUpdate"):
+			child.fpLandUpdate()
 
 func isPointOnLand(point: Vector2) -> bool:
 	for part in _landParts:
@@ -67,6 +63,4 @@ func _getFreezeUpdates() -> bool:
 	return _freezeUpdates
 
 func _getFPerspController() -> FPerspController:
-	var node := get_node(fPerspControllerPath)
-	assert(node and node is FPerspController, "FLandController: expected valid FPerspController not found")
-	return node as FPerspController
+	return _lastFPerspController # I don't really like this, but it should work

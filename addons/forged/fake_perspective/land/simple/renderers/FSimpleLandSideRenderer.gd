@@ -7,7 +7,7 @@ export var radiusMultiplier: float = 1.0
 func _baseDrawPart(part) -> bool:
 	if part is FSimpleLandCircle:
 		draw_circle(part.position + 
-			part.sideOffset.rotated(FUtil.fPerspController.rotation),
+			part.sideOffset.rotated(_fLandController.fPerspController.rotation),
 			part.radius * radiusMultiplier, part.sideColor)
 		return true
 	return false

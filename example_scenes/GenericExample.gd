@@ -11,9 +11,9 @@ export var camRotationSpeedDegs: float = 30.0
 export var numTreesToGenerate: int = 100
 export var autoRotateSpeedDegs: float = 5.0
 
-onready var fLandController: FLandController = $FLandController
 onready var cam: Camera2D = $Cam
-onready var fPerspYSort: FPerspYSort = $FPerspYSort
+onready var fLandController: FLandController = $FLandController
+onready var fPerspYSort: FPerspYSort = $FLandController/FPerspYSort
 
 func _ready():
 	_generateExampleLand()
@@ -39,9 +39,9 @@ func _generateExampleLand():
 	for i in range(numIslandsToGenerate):
 		# Create the land part
 		var landPart := FSimpleLandCircle.new()
-		var landPos := FUtil.randVec2(islandXRange, islandYRange)
+		var landPos := Forged.Util.randVec2(islandXRange, islandYRange)
 		landPart.setup(landPos,
-			FUtil.randfFromVec2(islandRadiusRange))
+			Forged.Util.randfFromVec2(islandRadiusRange))
 		fLandController.addLandPart(landPart)
 		
 	_generateTrees()
@@ -50,9 +50,9 @@ func _generateExampleLand():
 
 func _generateTrees():
 	for i in range(numTreesToGenerate):
-		var treePos := FUtil.randVec2(islandXRange, islandYRange)
+		var treePos := Forged.Util.randVec2(islandXRange, islandYRange)
 		while not fLandController.isPointOnLand(treePos):
-			treePos = FUtil.randVec2(islandXRange, islandYRange)
+			treePos = Forged.Util.randVec2(islandXRange, islandYRange)
 			# TODO: should probably have a safety to prevent infinite loop
 		var simpleTree := PL_SIMPLE_TREE.instance()
 		simpleTree.position = treePos
