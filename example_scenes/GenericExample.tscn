@@ -23,6 +23,7 @@ current = true
 
 [node name="FLandController" type="Node2D" parent="."]
 script = ExtResource( 3 )
+fPerspControllerPath = NodePath("../FPerspController")
 
 [node name="FSimpleLandSplashRenderer" type="Node2D" parent="FLandController"]
 script = ExtResource( 5 )

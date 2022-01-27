@@ -10,9 +10,19 @@ var _freezeUpdates: bool = false
 
 var freezeUpdates: bool setget _setFreezeUpdates, _getFreezeUpdates
 var landParts: Array setget , _getLandParts
+var fPerspController: FPerspController setget , _getFPerspController
 
 func _ready():
 	reset()
+
+func _enter_tree():
+	self.fPerspController.connect("rotationChanged", self, "_onFPerspControllerRotationChanged")
+	
+func _exit_tree():
+	self.fPerspController.disconnect("rotationChanged", self, "_onFPerspControllerRotationChanged")
+	
+func _onFPerspControllerRotationChanged(rotation):
+	fpLandUpdate()
 	
 func reset():
 	if queueFreeLandPartsOnRemoval:
@@ -55,3 +65,8 @@ func _setFreezeUpdates(freeze: bool):
 		
 func _getFreezeUpdates() -> bool:
 	return _freezeUpdates
+
+func _getFPerspController() -> FPerspController:
+	var node := get_node(fPerspControllerPath)
+	assert(node and node is FPerspController, "FLandController: expected valid FPerspController not found")
+	return node as FPerspController

@@ -21,6 +21,7 @@ func _physics_process(delta):
 	move_and_collide(vel)
 
 func _updateLegs():
+	# TODO: snaps wrong with rotating world
 	var dirVec := _calcMoveDirVec()
 	var angle := dirVec.angle() - deg2rad(90)
 	legSnapMarkers.rotation = angle if vel != Vector2.ZERO else 0

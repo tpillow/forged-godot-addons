@@ -9,6 +9,7 @@ export var islandXRange := Vector2(-300, 300)
 export var islandYRange := Vector2(-150, 150)
 export var camRotationSpeedDegs: float = 30.0
 export var numTreesToGenerate: int = 100
+export var autoRotateSpeedDegs: float = 5.0
 
 onready var fLandController: FLandController = $FLandController
 onready var cam: Camera2D = $Cam
@@ -25,7 +26,9 @@ func _process(delta):
 		cam.rotation_degrees += camRotationSpeedDegs * delta
 	elif Input.is_action_pressed("rotate_right"):
 		cam.rotation_degrees += -camRotationSpeedDegs * delta
-	
+	else:
+		cam.rotation_degrees += autoRotateSpeedDegs * delta
+
 func _generateExampleLand():
 	fLandController.freezeUpdates = true # Just prevents unnecessary updates while building
 	fLandController.reset()
