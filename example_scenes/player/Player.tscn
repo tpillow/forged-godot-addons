@@ -31,7 +31,7 @@ width = 2
 script = ExtResource( 5 )
 
 [node name="FPerspObj" type="Node2D" parent="."]
-position = Vector2( 0, 4 )
+position = Vector2( 0, 6 )
 script = ExtResource( 4 )
 relativeToParent = false
 relativeToNodePath = NodePath("../Body")
