@@ -1,8 +1,6 @@
 class_name FSceneManager
 extends Node
 
-signal transitionComplete()
-
 var _sceneTree: SceneTree = null
 var _sceneStack := []
 var _curCameras := {}
@@ -19,8 +17,7 @@ func push(next: Node, transition: Node = null):
 	_sceneTree.root.add_child(next)
 	_curCameras[next] = _getCurrentCams(next)
 	if transition:
-		_doTransition(transition, prev, next)
-		yield(self, "transitionComplete")
+		yield(_doTransition(transition, prev, next), "completed")
 	else:
 		setNodeVisibleAndChildCanvasLayers(next, true)
 	if prev:
@@ -33,8 +30,7 @@ func pop(transition: Node = null):
 	if next:
 		_sceneTree.root.add_child(next)
 	if transition:
-		_doTransition(transition, prev, next)
-		yield(self, "transitionComplete")
+		yield(_doTransition(transition, prev, next), "completed")
 	else:
 		setNodeVisibleAndChildCanvasLayers(next, true)
 	_sceneTree.root.remove_child(prev)
@@ -95,4 +91,3 @@ func _doTransition(transition: Node, prev: Node, next: Node):
 	if next:
 		next.pause_mode = Node.PAUSE_MODE_INHERIT
 	_sceneTree.paused = false
-	emit_signal("transitionComplete")
