@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://example_scenes/GenericExample.gd" type="Script" id=1]
 [ext_resource path="res://addons/forged/fake_perspective/land/simple/renderers/FSimpleLandSideRenderer.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://addons/forged/fake_perspective/controllers/FPerspController.gd" type="Script" id=6]
 [ext_resource path="res://addons/forged/fake_perspective/util/FPerspYSort.gd" type="Script" id=7]
 [ext_resource path="res://example_scenes/MainControl.gd" type="Script" id=8]
+[ext_resource path="res://example_scenes/DebugPolygons.gd" type="Script" id=9]
 
 [node name="GenericExample" type="Node2D"]
 script = ExtResource( 1 )
@@ -37,6 +38,9 @@ script = ExtResource( 4 )
 [node name="FPerspYSort" type="Node2D" parent="FLandController"]
 script = ExtResource( 7 )
 _fPerspControllerPath = NodePath("../../FPerspController")
+
+[node name="DebugPolygons" type="Node2D" parent="."]
+script = ExtResource( 9 )
 
 [node name="ControlLayer" type="CanvasLayer" parent="."]
 

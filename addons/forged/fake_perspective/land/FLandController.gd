@@ -51,6 +51,25 @@ func addLandPart(part):
 	_landParts.append(part)
 	fpLandUpdate()
 
+##### Navigation
+
+func createAllNavigationPolygons() -> Array:
+	var ret := []
+	for part in _landParts:
+		assert(part.has_method("createNavigationPolygon"),
+			"FLandController: 'createAllNavigationPolygons' requires all land parts to have a 'createNavigationPolygon' method")
+		ret.append(part.createNavigationPolygon())
+	return ret
+
+func createNavigation2D() -> Navigation2D:
+	var ret := Navigation2D.new()
+	var allNavPolys := createAllNavigationPolygons()
+	for poly in allNavPolys:
+		ret.navpoly_add(poly, Transform2D(0, Vector2.ZERO))
+	return ret
+
+##### Getters Setters
+
 func _getLandParts() -> Array:
 	return _landParts
 

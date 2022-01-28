@@ -4,17 +4,19 @@ const PL_SIMPLE_TREE := preload("res://example_scenes/simple_tree/SimpleTree.tsc
 const PL_PLAYER := preload("res://example_scenes/player/Player.tscn")
 const PL_SHADER_EXAMPLE_SCENE := preload("res://example_scenes/shader_examples/ShaderExamples.tscn")
 
-export var numIslandsToGenerate: int = 10
+export var numIslandsToGenerate: int = 6
 export var islandRadiusRange := Vector2(50, 150)
 export var islandXRange := Vector2(-300, 300)
 export var islandYRange := Vector2(-150, 150)
 export var camRotationSpeedDegs: float = 30.0
 export var numTreesToGenerate: int = 100
 export var autoRotateSpeedDegs: float = 5.0
+export var showDebugPolys := true
 
 onready var cam: Camera2D = $Cam
 onready var fLandController: FLandController = $FLandController
 onready var fPerspYSort: FPerspYSort = $FLandController/FPerspYSort
+onready var debugPolygons: Node2D = $DebugPolygons
 
 func _ready():
 	_generateExampleLand()
@@ -50,6 +52,9 @@ func _generateExampleLand():
 	_generateTrees()
 
 	fLandController.freezeUpdates = false
+	
+	if showDebugPolys:
+		debugPolygons.setPolys(fLandController.createAllNavigationPolygons())
 
 func _generateTrees():
 	for i in range(numTreesToGenerate):
