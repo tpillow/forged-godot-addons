@@ -19,6 +19,8 @@ func push(next: Node, transition: Node = null):
 	if transition:
 		_doTransition(transition, prev, next)
 		yield(self, "transitionComplete")
+	else:
+		setNodeVisibleAndChildCanvasLayers(next, true)
 	if prev:
 		_sceneTree.root.remove_child(prev)
 	ensureCamsCurrent(next)
@@ -32,6 +34,8 @@ func pop(transition: Node = null):
 	if transition:
 		_doTransition(transition, prev, next)
 		yield(self, "transitionComplete")
+	else:
+		setNodeVisibleAndChildCanvasLayers(next, true)
 	_sceneTree.root.remove_child(prev)
 	prev.free()
 	ensureCamsCurrent(next)
