@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "CanvasLayer",
+"class": "FColorFadeTransition",
+"language": "GDScript",
+"path": "res://addons/forged/scene_manager/transitions/FColorFadeTransition.gd"
+}, {
 "base": "Node2D",
 "class": "FLandBaseRenderer",
 "language": "GDScript",
@@ -38,6 +43,11 @@ _global_script_classes=[ {
 "class": "FPerspYSort",
 "language": "GDScript",
 "path": "res://addons/forged/fake_perspective/util/FPerspYSort.gd"
+}, {
+"base": "Node",
+"class": "FSceneManager",
+"language": "GDScript",
+"path": "res://addons/forged/scene_manager/FSceneManager.gd"
 }, {
 "base": "Node",
 "class": "FSimpleLandCircle",
@@ -75,17 +85,24 @@ _global_script_classes=[ {
 "path": "res://addons/forged/autoload/ForgedLogger.gd"
 }, {
 "base": "Object",
+"class": "ForgedPreloads",
+"language": "GDScript",
+"path": "res://addons/forged/autoload/ForgedPreloads.gd"
+}, {
+"base": "Object",
 "class": "ForgedUtil",
 "language": "GDScript",
 "path": "res://addons/forged/autoload/ForgedUtil.gd"
 } ]
 _global_script_class_icons={
+"FColorFadeTransition": "",
 "FLandBaseRenderer": "",
 "FLandController": "",
 "FNodeLine2D": "",
 "FPerspController": "",
 "FPerspObj": "",
 "FPerspYSort": "",
+"FSceneManager": "",
 "FSimpleLandCircle": "",
 "FSimpleLandSideRenderer": "",
 "FSimpleLandSplashRenderer": "",
@@ -93,6 +110,7 @@ _global_script_class_icons={
 "FSnapNode": "",
 "ForgedGroupUtil": "",
 "ForgedLogger": "",
+"ForgedPreloads": "",
 "ForgedUtil": ""
 }
 
@@ -159,6 +177,11 @@ rotate_right={
 player_move={
 "deadzone": 0.5,
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+goto_shader_scene={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":66,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

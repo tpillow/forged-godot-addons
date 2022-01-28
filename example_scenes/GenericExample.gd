@@ -2,6 +2,7 @@ extends Node2D
 
 const PL_SIMPLE_TREE := preload("res://example_scenes/simple_tree/SimpleTree.tscn")
 const PL_PLAYER := preload("res://example_scenes/player/Player.tscn")
+const PL_SHADER_EXAMPLE_SCENE := preload("res://example_scenes/shader_examples/ShaderExamples.tscn")
 
 export var numIslandsToGenerate: int = 10
 export var islandRadiusRange := Vector2(50, 150)
@@ -21,6 +22,8 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("action_1"):
 		_generateExampleLand()
+	elif Input.is_action_just_pressed("goto_shader_scene"):
+		Forged.SceneManager.push(PL_SHADER_EXAMPLE_SCENE.instance(), Forged.Preloads.PL_FColorFadeTransition.instance())
 
 	if Input.is_action_pressed("rotate_left"):
 		cam.rotation_degrees += camRotationSpeedDegs * delta
