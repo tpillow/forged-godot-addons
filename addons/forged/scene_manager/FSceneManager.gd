@@ -15,7 +15,7 @@ func initialize(sceneTree: SceneTree):
 func push(next: Node, transition: Node = null):
 	var prev := peekScene(0)
 	_sceneTree.root.add_child(next)
-	_curCameras[next] = _getCurrentCams(next)
+	_curCameras[next] = _getCurrentCam(next)
 	if transition:
 		yield(_doTransition(transition, prev, next), "completed")
 	else:
@@ -45,18 +45,18 @@ func peekScene(idx: int) -> Node:
 	return _sceneStack[_sceneStack.size() - idx - 1]
 
 func ensureCurrentCamsFor(node: Node):
-	if _curCameras.has(node):
-		for cam in _curCameras[node]:
-			cam.current = true
+	if _curCameras.has(node) and _curCameras[node]:
+		_curCameras[node].current = true
 
-func _getCurrentCams(node: Node) -> Array:
-	if not node: return []
-	var ret := []
+func _getCurrentCam(node: Node) -> Camera2D:
+	if not node: return null
 	if node is Camera2D and node.current:
-		ret.append(node)
+		return node as Camera2D
 	for child in node.get_children():
-		ret.append_array(_getCurrentCams(child))
-	return ret
+		var tmp := _getCurrentCam(child)
+		if tmp:
+			return tmp
+	return null
 	
 func setNodeVisibleAndChildCanvasLayers(node: Node, visible: bool):
 	if not node: return
