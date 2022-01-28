@@ -5,6 +5,7 @@ signal transitionComplete()
 
 var _sceneTree: SceneTree = null
 var _sceneStack := []
+var _curCameras := {}
 
 func initialize(sceneTree: SceneTree):
 	_sceneTree = sceneTree
@@ -16,6 +17,7 @@ func initialize(sceneTree: SceneTree):
 func push(next: Node, transition: Node = null):
 	var prev := peekScene(0)
 	_sceneTree.root.add_child(next)
+	_curCameras[next] = _getCurrentCams(next)
 	if transition:
 		_doTransition(transition, prev, next)
 		yield(self, "transitionComplete")
@@ -23,7 +25,6 @@ func push(next: Node, transition: Node = null):
 		setNodeVisibleAndChildCanvasLayers(next, true)
 	if prev:
 		_sceneTree.root.remove_child(prev)
-	ensureCamsCurrent(next)
 	_sceneStack.push_back(next)
 	
 func pop(transition: Node = null):
@@ -37,23 +38,29 @@ func pop(transition: Node = null):
 	else:
 		setNodeVisibleAndChildCanvasLayers(next, true)
 	_sceneTree.root.remove_child(prev)
+	_curCameras.erase(prev)
 	prev.free()
-	ensureCamsCurrent(next)
 	_sceneStack.pop_back()
+	ensureCurrentCamsFor(next)
 
 func peekScene(idx: int) -> Node:
 	if _sceneStack.size() <= idx:
 		return null
 	return _sceneStack[_sceneStack.size() - idx - 1]
 
-func ensureCamsCurrent(node: Node):
-	# Needed when switching between scenes with their own cameras
-	if not node: return
-	if node is Camera2D:
-		node.current = not node.current
-		node.current = not node.current
+func ensureCurrentCamsFor(node: Node):
+	if _curCameras.has(node):
+		for cam in _curCameras[node]:
+			cam.current = true
+
+func _getCurrentCams(node: Node) -> Array:
+	if not node: return []
+	var ret := []
+	if node is Camera2D and node.current:
+		ret.append(node)
 	for child in node.get_children():
-		ensureCamsCurrent(child)
+		ret.append_array(_getCurrentCams(child))
+	return ret
 	
 func setNodeVisibleAndChildCanvasLayers(node: Node, visible: bool):
 	if not node: return
@@ -79,7 +86,7 @@ func _doTransition(transition: Node, prev: Node, next: Node):
 	transition.pause_mode = Node.PAUSE_MODE_PROCESS
 	_sceneTree.root.add_child(transition)
 	_sceneTree.paused = true
-	ensureCamsCurrent(prev)
+	ensureCurrentCamsFor(prev)
 	transition.beginTransition(prev, next)
 	yield(transition, "transitionComplete")
 	transition.queue_free()

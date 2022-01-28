@@ -29,7 +29,7 @@ func beginTransition(prev: Node, next: Node):
 	
 	Forged.SceneManager.setNodeVisibleAndChildCanvasLayers(prev, false)
 	Forged.SceneManager.setNodeVisibleAndChildCanvasLayers(next, true)
-	Forged.SceneManager.ensureCamsCurrent(next)
+	Forged.SceneManager.ensureCurrentCamsFor(next)
 	yield(get_tree().create_timer(fadePauseDelay), "timeout")
 	
 	tween.interpolate_property(colorRect, "color", color, transparentColor,
