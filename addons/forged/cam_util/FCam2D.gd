@@ -10,6 +10,7 @@ export var maxShakeRotationDegs := Vector2(-5, 5)
 export var _zoom: Vector2 = Vector2(1, 1)
 export var smoothZoomEnabled: bool = false
 export var smoothZoomDuration: float = 1.5
+export var followNodeOffset := Vector2(0, 0)
 
 var smoothZoomTweenType: int = Tween.TRANS_LINEAR
 var smoothZoomTweenEase: int = Tween.EASE_IN
@@ -34,7 +35,7 @@ func _process(delta):
 func _processCamMove(delta: float):
 	if followNode:
 		# TODO: add smoothing? Or let camera settings handle that?
-		global_position = followNode.global_position
+		global_position = followNode.global_position + followNodeOffset
 	
 func _processShake(delta: float):
 	if _shakeMagnitude > 0:
