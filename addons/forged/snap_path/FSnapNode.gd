@@ -37,6 +37,9 @@ func _tweenToHome():
 		tweenHomeDuration, tweenTransType, tweenEaseType)
 	_tween.start()
 
+func forceHome():
+	global_position = _getHomeNode().global_position
+
 func _satisfiesNodesToWaitFor() -> bool:
 	for snapNode in self.snapNodesToWaitStop:
 		if snapNode.isMoving:
