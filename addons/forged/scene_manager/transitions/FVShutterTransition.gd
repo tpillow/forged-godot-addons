@@ -1,4 +1,4 @@
-class_name FColorFadeTransition
+class_name FVShutterTransition
 extends CanvasLayer
 
 signal transitionComplete()
@@ -12,20 +12,26 @@ export var fadeInTime: float = 1.0
 var tweenType: int = Tween.TRANS_LINEAR
 var tweenEaseType: int = Tween.EASE_IN
 
-onready var colorRect: ColorRect = $ColorRect
+onready var topColorRect: ColorRect = $TopColorRect
+onready var botColorRect: ColorRect = $BotColorRect
 onready var tween: Tween = $Tween
 
 func beginTransition(prev: Node, next: Node):
 	Forged.SceneManager.setNodeVisibleAndChildCanvasLayers(next, false)
-	var transparentColor: Color = Color(color.to_html())
-	transparentColor.a = 0.0
-	colorRect.color = transparentColor
-	colorRect.visible = false
+	topColorRect.color = color
+	botColorRect.color = color
+	topColorRect.anchor_bottom = 0.0
+	botColorRect.anchor_top = 1.0
+	topColorRect.visible = false
+	botColorRect.visible = false
 	
 	yield(get_tree().create_timer(startDelay), "timeout")
 	
-	colorRect.visible = true
-	tween.interpolate_property(colorRect, "color", transparentColor, color,
+	topColorRect.visible = true
+	botColorRect.visible = true
+	tween.interpolate_property(topColorRect, "anchor_bottom", 0.0, 1.0,
+		fadeOutTime, tweenType, tweenEaseType)
+	tween.interpolate_property(botColorRect, "anchor_top", 1.0, 0.0,
 		fadeOutTime, tweenType, tweenEaseType)
 	tween.start()
 	yield(tween, "tween_completed")
@@ -35,10 +41,13 @@ func beginTransition(prev: Node, next: Node):
 	Forged.SceneManager.ensureCurrentCamsFor(next)
 	yield(get_tree().create_timer(fadePauseDelay), "timeout")
 	
-	tween.interpolate_property(colorRect, "color", color, transparentColor,
+	tween.interpolate_property(topColorRect, "anchor_bottom", 1.0, 0.0,
+		fadeInTime, tweenType, tweenEaseType)
+	tween.interpolate_property(botColorRect, "anchor_top", 0.0, 1.0,
 		fadeInTime, tweenType, tweenEaseType)
 	tween.start()
 	yield(tween, "tween_completed")
 	
-	colorRect.visible = false
+	topColorRect.visible = false
+	botColorRect.visible = false
 	emit_signal("transitionComplete")

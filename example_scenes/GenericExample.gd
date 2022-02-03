@@ -25,7 +25,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("action_1"):
 		_generateExampleLand()
 	elif Input.is_action_just_pressed("goto_shader_scene"):
-		Forged.SceneManager.push(PL_SHADER_EXAMPLE_SCENE.instance(), Forged.Preloads.PL_FColorFadeTransition.instance())
+		Forged.SceneManager.push(PL_SHADER_EXAMPLE_SCENE.instance(), Forged.Preloads.PL_FVShutterTransition.instance())
 
 	if Input.is_action_pressed("rotate_left"):
 		cam.rotation_degrees += camRotationSpeedDegs * delta

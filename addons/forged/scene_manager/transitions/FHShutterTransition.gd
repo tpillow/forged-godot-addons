@@ -1,4 +1,4 @@
-class_name FColorFadeTransition
+class_name FHShutterTransition
 extends CanvasLayer
 
 signal transitionComplete()
@@ -12,20 +12,26 @@ export var fadeInTime: float = 1.0
 var tweenType: int = Tween.TRANS_LINEAR
 var tweenEaseType: int = Tween.EASE_IN
 
-onready var colorRect: ColorRect = $ColorRect
+onready var leftColorRect: ColorRect = $LeftColorRect
+onready var rightColorRect: ColorRect = $RightColorRect
 onready var tween: Tween = $Tween
 
 func beginTransition(prev: Node, next: Node):
 	Forged.SceneManager.setNodeVisibleAndChildCanvasLayers(next, false)
-	var transparentColor: Color = Color(color.to_html())
-	transparentColor.a = 0.0
-	colorRect.color = transparentColor
-	colorRect.visible = false
+	leftColorRect.color = color
+	rightColorRect.color = color
+	leftColorRect.anchor_right = 0.0
+	rightColorRect.anchor_left = 1.0
+	leftColorRect.visible = false
+	rightColorRect.visible = false
 	
 	yield(get_tree().create_timer(startDelay), "timeout")
 	
-	colorRect.visible = true
-	tween.interpolate_property(colorRect, "color", transparentColor, color,
+	leftColorRect.visible = true
+	rightColorRect.visible = true
+	tween.interpolate_property(leftColorRect, "anchor_right", 0.0, 1.0,
+		fadeOutTime, tweenType, tweenEaseType)
+	tween.interpolate_property(rightColorRect, "anchor_left", 1.0, 0.0,
 		fadeOutTime, tweenType, tweenEaseType)
 	tween.start()
 	yield(tween, "tween_completed")
@@ -35,10 +41,13 @@ func beginTransition(prev: Node, next: Node):
 	Forged.SceneManager.ensureCurrentCamsFor(next)
 	yield(get_tree().create_timer(fadePauseDelay), "timeout")
 	
-	tween.interpolate_property(colorRect, "color", color, transparentColor,
+	tween.interpolate_property(leftColorRect, "anchor_right", 1.0, 0.0,
+		fadeInTime, tweenType, tweenEaseType)
+	tween.interpolate_property(rightColorRect, "anchor_left", 0.0, 1.0,
 		fadeInTime, tweenType, tweenEaseType)
 	tween.start()
 	yield(tween, "tween_completed")
 	
-	colorRect.visible = false
+	leftColorRect.visible = false
+	rightColorRect.visible = false
 	emit_signal("transitionComplete")
