@@ -29,9 +29,9 @@ func beginTransition(prev: Node, next: Node):
 	
 	topColorRect.visible = true
 	botColorRect.visible = true
-	tween.interpolate_property(topColorRect, "anchor_bottom", 0.0, 1.0,
+	tween.interpolate_property(topColorRect, "anchor_bottom", 0.0, 0.5,
 		fadeOutTime, tweenType, tweenEaseType)
-	tween.interpolate_property(botColorRect, "anchor_top", 1.0, 0.0,
+	tween.interpolate_property(botColorRect, "anchor_top", 1.0, 0.5,
 		fadeOutTime, tweenType, tweenEaseType)
 	tween.start()
 	yield(tween, "tween_completed")
@@ -41,9 +41,9 @@ func beginTransition(prev: Node, next: Node):
 	Forged.SceneManager.ensureCurrentCamsFor(next)
 	yield(get_tree().create_timer(fadePauseDelay), "timeout")
 	
-	tween.interpolate_property(topColorRect, "anchor_bottom", 1.0, 0.0,
+	tween.interpolate_property(topColorRect, "anchor_bottom", 0.5, 0.0,
 		fadeInTime, tweenType, tweenEaseType)
-	tween.interpolate_property(botColorRect, "anchor_top", 0.0, 1.0,
+	tween.interpolate_property(botColorRect, "anchor_top", 0.5, 1.0,
 		fadeInTime, tweenType, tweenEaseType)
 	tween.start()
 	yield(tween, "tween_completed")

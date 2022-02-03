@@ -1,4 +1,7 @@
-shader_type canvas_item;
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type canvas_item;
 
 uniform bool enableOutline = true;
 uniform int pixelSteps = 1;
@@ -30,4 +33,4 @@ void fragment() {
 			COLOR = outlineColor;
 		}
 	}
-}
+}"

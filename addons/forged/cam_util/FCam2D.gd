@@ -34,7 +34,7 @@ func _process(delta):
 	
 func _processCamMove(delta: float):
 	if followNode:
-		# TODO: add smoothing? Or let camera settings handle that?
+		# Smoothing can be handled by the underlying camera
 		global_position = followNode.global_position + followNodeOffset
 	
 func _processShake(delta: float):
